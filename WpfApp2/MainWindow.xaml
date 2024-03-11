@@ -1,0 +1,114 @@
+<Window x:Class="SmertMuzika.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AudioPlayer"
+        mc:Ignorable="d"
+        MinHeight="450" MinWidth="800"
+        Title="MainWindow" Height="450" Width="800">
+	<Grid>
+
+		<Grid.Background>
+			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+				<GradientStop Color="GREEN"/>
+				<GradientStop Color="RED" Offset="0.325"/>
+				<GradientStop Color="OLIVE" Offset="0.688"/>
+			</LinearGradientBrush>
+		</Grid.Background>
+
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+
+		</Grid.ColumnDefinitions>
+		<Button x:Name="Play" Content="Pause"  Grid.Row="5" VerticalAlignment="Center"  FontFamily="Algerian" FontSize="20" Click="Play_Click" Grid.Column="1" Height="30" >
+			<Button.Background>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFECEEEA"/>
+					<GradientStop Color="#FFD3EDB2" Offset="1"/>
+				</LinearGradientBrush>
+			</Button.Background>
+		</Button>
+		<Button x:Name="Back" Content="Back" Grid.Row="5" VerticalAlignment="Center" FontFamily="Algerian" FontSize="20" Click="Back_Click" Height="30" Margin="10,0,0,0">
+			<Button.Background>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFE4F1F4"/>
+					<GradientStop Color="#FF89CCDE" Offset="1"/>
+				</LinearGradientBrush>
+			</Button.Background>
+		</Button>
+		<Button x:Name="Next" Content="Next" Grid.Row="5" VerticalAlignment="Center" FontFamily="Algerian" FontSize="20" Click="Next_Click" Height="30" RenderTransformOrigin="0.829,0.992" Margin="0,0,10,0" Grid.Column="2">
+			<Button.Background>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFFDFCF7"/>
+					<GradientStop Color="#FFE1D39A" Offset="1"/>
+				</LinearGradientBrush>
+			</Button.Background>
+			<Button.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform ScaleY="1"/>
+					<SkewTransform/>
+					<RotateTransform/>
+					<TranslateTransform/>
+				</TransformGroup>
+			</Button.RenderTransform>
+		</Button>
+		<Button x:Name="Randomm" Content="Random" Grid.Column="4" Grid.Row="5"  Height="31" VerticalAlignment="Center" FontFamily="Algerian" FontSize="20" Click="Random_Click">
+			<Button.Background>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFEDE9E9" Offset="0.137"/>
+					<GradientStop Color="#FFD08761" Offset="1"/>
+				</LinearGradientBrush>
+			</Button.Background>
+		</Button>
+		<Button x:Name="Repeat" Content="Repeat" Grid.Column="3" Grid.Row="5" Height="30" VerticalAlignment="Center" FontFamily="Algerian" FontSize="20" Click="Repeat_Click">
+			<Button.Background>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFF4ECEF" Offset="0.163"/>
+					<GradientStop Color="#FFD55F5F" Offset="1"/>
+				</LinearGradientBrush>
+			</Button.Background>
+		</Button>
+		<Button x:Name="OpenMusicFloder" Click="OpenMusicFloder_Click" Content="Open music folder"  Grid.Column="1"  Grid.Row="0" VerticalAlignment="Top" Grid.ColumnSpan="6" Margin="50,20,50,0" FontFamily="Algerian" FontSize="18" Height="44">
+			<Button.Background>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#FFDCCAE5" Offset="0.005"/>
+					<GradientStop Color="#FFB198BC" Offset="1"/>
+				</LinearGradientBrush>
+			</Button.Background>
+		</Button>
+		<MediaElement x:Name="Media" LoadedBehavior="Manual" MediaOpened="Media_MediaOpened" Grid.Column="1" HorizontalAlignment="Left" Height="37" Grid.Row="4" VerticalAlignment="Top" Width="539" Grid.ColumnSpan="6" Margin="32,1,0,0" RenderTransformOrigin="0.5,0.5">
+			<MediaElement.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform/>
+					<SkewTransform AngleY="-0.102"/>
+					<RotateTransform/>
+					<TranslateTransform Y="-0.364"/>
+				</TransformGroup>
+			</MediaElement.RenderTransform>
+		</MediaElement>
+		<Slider x:Name="AudioVolume" ValueChanged="AudioVolume_ValueChanged" Grid.Column="5" Grid.Row="5" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="26" Margin="27,16,27,0" TickPlacement="BottomRight" Minimum="0" Maximum="100" Value="100"/>
+		<Slider x:Name="AudioSilder" ValueChanged="AudioSilder_ValueChanded" Grid.ColumnSpan="8" Margin="21,37,29,0" Grid.Row="4" Height="26" VerticalAlignment="Top" Minimum="0" Maximum="100" Value="0" />
+		<ListBox x:Name="AudioFilesListBox" SelectionMode="Single" SelectionChanged="AudioFilesListBox_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="8" Grid.RowSpan="4" Margin="0,72,0,0"/>
+		<TextBlock x:Name="currentTimeTextBlock" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="4" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top"/>
+		<TextBlock x:Name="remainingTimeTextBlock" Grid.Column="7" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Text="00:00"/>
+
+	</Grid>
+</Window>
