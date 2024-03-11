@@ -18,11 +18,10 @@ namespace SmertMuzika
         private bool isShuffling = false;
         private double currentPosition = 0;
         private double totalDuration = 0;
-#pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
-#pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
+#pragma warning disable CS8618 
+#pragma warning disable CS8618 
         public MainWindow()
-#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
-#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
+#pragma warning restore CS8618
         {
             InitializeComponent();
         }
@@ -36,9 +35,9 @@ namespace SmertMuzika
 
             if (dialog.ShowDialog() == true)
             {
-#pragma warning disable CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
+#pragma warning disable CS8604 
                 audioFiles = Directory.GetFiles(Path.GetDirectoryName(dialog.FileName), "*.mp3");
-#pragma warning restore CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
+#pragma warning restore CS8604 
                 originalAudioFiles = audioFiles.ToArray();
                 AudioFilesListBox.Items.Clear();
 
@@ -93,9 +92,9 @@ namespace SmertMuzika
         {
             Media.MediaEnded += Media_MediaEnded;
             AudioSilder.Maximum = Media.NaturalDuration.TimeSpan.TotalSeconds;
-#pragma warning disable CS8622 // Допустимость значений NULL для ссылочных типов в типе параметра не соответствует целевому объекту делегирования (возможно, из-за атрибутов допустимости значений NULL).
+#pragma warning disable CS8622 
             CompositionTarget.Rendering += UpdateSliderPosition;
-#pragma warning restore CS8622 // Допустимость значений NULL для ссылочных типов в типе параметра не соответствует целевому объекту делегирования (возможно, из-за атрибутов допустимости значений NULL).
+#pragma warning restore CS8622 
         }
         private void UpdateSliderPosition(object sender, EventArgs e)
         {
@@ -162,9 +161,9 @@ namespace SmertMuzika
         {
             PlayNextAudio();
         }
-#pragma warning disable CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
+#pragma warning disable CS1998 
         private async Task ShufflePlaylistAsync()
-#pragma warning restore CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
+#pragma warning restore CS1998 
         {
             if (audioFiles != null && audioFiles.Length > 0)
             {
@@ -184,9 +183,9 @@ namespace SmertMuzika
                 AudioPlayer.AddToHistory(audioFiles[currentAudioIndex]);
             }
         }
-#pragma warning disable CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
+#pragma warning disable CS1998 
         private async Task RestorePlaylistOrderAsync()
-#pragma warning restore CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
+#pragma warning restore CS1998
         {
             if (originalAudioFiles != null && originalAudioFiles.Length > 0)
             {
